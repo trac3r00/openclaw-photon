@@ -28,7 +28,7 @@ export interface PhotonProvisioningApi {
   listProjects(): Promise<PhotonProject[]>;
   listUsers(projectId: string, projectSecret: string): Promise<PhotonUser[]>;
   mintProjectSecret(projectId: string): Promise<string>;
-  registerUser(
+  createUser(
     projectId: string,
     projectSecret: string,
     identity: { email: string; name: string },
@@ -150,7 +150,7 @@ export function createPhotonApi(request: HttpRequest, token: string): PhotonProv
     },
     listUsers: async (projectId, projectSecret) =>
       unwrapList(await spectrum(projectId, projectSecret)).map(parseUser),
-    registerUser: async (projectId, projectSecret, identity, phone) => {
+    createUser: async (projectId, projectSecret, identity, phone) => {
       const body = record(await spectrum(projectId, projectSecret, {
         method: "POST",
         body: JSON.stringify({

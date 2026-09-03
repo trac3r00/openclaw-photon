@@ -7,7 +7,7 @@ const api: PhotonProvisioningApi = {
   createProject: vi.fn(),
   mintProjectSecret: vi.fn(),
   listUsers: vi.fn(),
-  registerUser: vi.fn(),
+  createUser: vi.fn(),
 };
 
 function dependencies(): CliDependencies {

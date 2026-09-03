@@ -78,7 +78,7 @@ export async function provisionPhoton(
   const project = await resolveProject(deps);
   const { projectSecret, users } = await credentialsAndUsers(project, deps);
   const existing = users.find((user) => user.phoneNumber === phone);
-  const user = existing ?? await deps.api.registerUser(
+  const user = existing ?? await deps.api.createUser(
     project.id,
     projectSecret,
     deps.identity,

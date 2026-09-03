@@ -78,7 +78,7 @@ describe("Photon provisioning API", () => {
     const api = createPhotonApi(request, "dashboard-token");
     const basic = `Basic ${Buffer.from("project-1:project-secret", "utf8").toString("base64")}`;
     await api.listUsers("project-1", "project-secret");
-    await api.registerUser(
+    await api.createUser(
       "project-1",
       "project-secret",
       { email: "operator@example.com", name: "Op Erator" },

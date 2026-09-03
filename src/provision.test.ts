@@ -15,7 +15,7 @@ function api(projects: PhotonProject[]): PhotonProvisioningApi {
     createProject: vi.fn(async () => "created-project"),
     mintProjectSecret: vi.fn(async () => "minted-secret"),
     listUsers: vi.fn(async () => []),
-    registerUser: vi.fn(async (_projectId, _secret, _identity, phone) => ({
+    createUser: vi.fn(async (_projectId, _secret, _identity, phone) => ({
       phoneNumber: phone,
       assignedPhoneNumber: "+14155550999",
     })),
@@ -62,7 +62,7 @@ describe("Photon provisioning", () => {
     })).resolves.toBe("+14155550999");
     expect(photon.listUsers).toHaveBeenCalledWith("project-1", "local-secret");
     expect(photon.mintProjectSecret).not.toHaveBeenCalled();
-    expect(photon.registerUser).not.toHaveBeenCalled();
+    expect(photon.createUser).not.toHaveBeenCalled();
   });
 
   it("mints once for invalid local credentials and persists before user registration", async () => {
@@ -77,7 +77,7 @@ describe("Photon provisioning", () => {
     vi.mocked(photon.listUsers)
       .mockRejectedValueOnce(new PhotonRequestError("invalid credentials", 401))
       .mockResolvedValueOnce([]);
-    vi.mocked(photon.registerUser).mockImplementationOnce(async (_id, secret, _identity, phone) => {
+    vi.mocked(photon.createUser).mockImplementationOnce(async (_id, secret, _identity, phone) => {
       expect(secret).toBe("minted-secret");
       expect(filesystem.files.get("/home/test/.openclaw/.env")).toContain("minted-secret");
       return { phoneNumber: phone, assignedPhoneNumber: "+14155550999" };

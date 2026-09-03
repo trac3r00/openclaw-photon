@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1 - 2026-09-03
+
+- Rename internal Photon provisioning methods to avoid ClawHub Inspector registrar-name collisions.
+- Preserve the verified provisioning behavior and 131-test safety baseline.
+
 ## 0.1.0 - 2026-09-03
 
 - Add an isolated Photon-backed iMessage channel for OpenClaw.
