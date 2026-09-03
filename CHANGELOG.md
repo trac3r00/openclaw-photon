@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 - 2026-09-03
+
+- Republish the verified 0.1.1 artifact with corrected full source-commit provenance metadata.
+- Withdraw the ClawHub 0.1.1 listing whose source commit used an invalid expansion of the correct short SHA.
+
 ## 0.1.1 - 2026-09-03
 
 - Rename internal Photon provisioning methods to avoid ClawHub Inspector registrar-name collisions.
