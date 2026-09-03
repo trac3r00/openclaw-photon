@@ -1,0 +1,54 @@
+{
+  "id": "photon",
+  "name": "Photon",
+  "description": "Private Photon iMessage channel plugin for OpenClaw.",
+  "activation": { "onStartup": false },
+  "channels": ["photon"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  },
+  "channelConfigs": {
+    "photon": {
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": { "type": "boolean" },
+          "allowFrom": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^\\+[1-9]\\d{1,14}$"
+            }
+          },
+          "outboundAllowFrom": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^\\+[1-9]\\d{1,14}$"
+            }
+          },
+          "dmPolicy": {
+            "type": "string",
+            "enum": ["allowlist", "disabled"]
+          },
+          "telemetry": { "type": "boolean" }
+        }
+      },
+      "uiHints": {
+        "allowFrom": {
+          "label": "Allowed sender numbers",
+          "help": "E.164 numbers permitted to message this Photon line."
+        },
+        "outboundAllowFrom": {
+          "label": "Allowed outbound numbers",
+          "help": "Optional outbound-only E.164 allowlist; defaults to allowed senders."
+        },
+        "dmPolicy": { "label": "Direct message policy" },
+        "telemetry": { "label": "Spectrum telemetry" }
+      }
+    }
+  }
+}
