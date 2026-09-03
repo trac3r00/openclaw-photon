@@ -1,12 +1,28 @@
 {
   "name": "openclaw-photon",
   "version": "0.1.0",
-  "description": "Private Photon iMessage channel plugin for OpenClaw.",
+  "description": "Photon-backed iMessage channel plugin for OpenClaw with durable delivery safety.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trac3r00/openclaw-photon.git"
+  },
+  "homepage": "https://github.com/trac3r00/openclaw-photon#readme",
+  "bugs": {
+    "url": "https://github.com/trac3r00/openclaw-photon/issues"
+  },
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "photon",
+    "imessage",
+    "channel-plugin"
+  ],
   "type": "module",
   "files": [
     "dist",
     "openclaw.plugin.json",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "exports": {
     ".": "./dist/index.js"
@@ -68,6 +84,11 @@
         ]
       }
     },
+    "install": {
+      "clawhubSpec": "clawhub:openclaw-photon",
+      "defaultChoice": "clawhub",
+      "minHostVersion": ">=2026.8.2"
+    },
     "compat": {
       "pluginApi": ">=2026.8.2",
       "minGatewayVersion": "2026.8.2"
@@ -75,13 +96,17 @@
     "build": {
       "openclawVersion": "2026.8.2",
       "pluginSdkVersion": "2026.8.2"
+    },
+    "release": {
+      "publishToClawHub": true,
+      "publishToNpm": false
     }
   },
   "engines": {
     "node": ">=22.22.3 <23 || >=24.15.0 <25 || >=25.9.0"
   },
-  "private": true,
-  "license": "UNLICENSED",
+  "private": false,
+  "license": "MIT",
   "bin": {
     "openclaw-photon": "./dist/src/cli.js"
   },

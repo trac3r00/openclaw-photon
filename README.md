@@ -1,19 +1,28 @@
 # openclaw-photon
 
-Private external OpenClaw channel plugin for Photon-backed iMessage DMs.
+OpenClaw channel plugin for Photon-backed iMessage DMs with durable ingress, conservative
+outbound retry classification, typing indicators, read receipts, and isolated project credentials.
 
 ## Publication status
 
-This repository is private while Photon Cloud's outbound iMessage endpoint is returning an
-ambiguous gRPC `UNKNOWN` error for the provisioned line. The plugin reports that failure without
-blind retries, but it will not be published to ClawHub until live outbound delivery is reliable
-again. ClawHub publication also requires an operator workflow for resolving durable
-`unknown_after_send` and `policy_blocked` journal entries, plus a deliberate review of the
-`spectrum-ts` 8.0.0 compatibility pin.
+This is a public beta. Photon Cloud's outbound iMessage endpoint has returned an ambiguous gRPC
+`UNKNOWN` error for the provisioned test line. The plugin safely reports and quarantines ambiguous
+delivery outcomes instead of blindly retrying them, but provider availability must be verified for
+each deployment. Durable `unknown_after_send` and `policy_blocked` journal entries currently
+require manual operator inspection, and `spectrum-ts` remains deliberately pinned to 8.0.0 for the
+validated integration contract.
+
+## Install
+
+```sh
+openclaw plugins install clawhub:openclaw-photon
+```
+
+Restart the OpenClaw gateway after installation, then provision an isolated Photon project.
 
 ## Provisioning
 
-After installing the package locally, run:
+Run:
 
 ```sh
 openclaw-photon setup --phone +14155550123
